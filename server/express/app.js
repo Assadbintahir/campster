@@ -10,6 +10,7 @@ const passport = require('passport')
 const http = require('http')
 const routes = require('./routes')
 const errorHandler = require('./middleware/errorhandler')
+const db = require('./../../mongodb')
 
 let server
 
@@ -18,6 +19,7 @@ const TAG = '/server/express/app.js'
 module.exports.start = () => {
   const app = express()
   mongoose.connect(global.config.mongo.uri, global.config.mongo.options)
+  global.db = db
 
   app.use(compression())
   app.use(helmet())

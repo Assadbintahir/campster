@@ -1,4 +1,11 @@
+const lib = require('./../../../lib/index')
+
 module.exports.helloWorld = (req, res, next) => {
-  res.status(200).json({message: 'Hello World'})
-  // next(new Error('This is user generated error'))
+  lib.test.indexTest('Asad')
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch((err) => {
+      next(err)
+    })
 }

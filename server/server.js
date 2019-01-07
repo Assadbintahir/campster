@@ -13,7 +13,7 @@ const logger = function (label, data) {
 
 // app close func
 const appOut = () => {
-  global.logger('going to terminate the process')
+  global.logger('Process-Exit: ', 'going to terminate the process')
   app.stop(() => {
     process.exit()
   })
