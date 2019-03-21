@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const helmet = require('helmet')
 const passport = require('passport')
 const http = require('http')
+const path = require('path')
 const routes = require('./routes')
 const errorHandler = require('./middleware/errorhandler')
 const db = {}
@@ -24,6 +25,7 @@ module.exports.start = () => {
   app.use(compression())
   app.use(helmet())
   app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(express.static(path.join(__dirname, '../../client/build')));
   app.use(bodyParser.json())
   app.use(methodOverride())
   app.use(cookieParser())
