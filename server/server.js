@@ -1,5 +1,7 @@
 'use strict'
 const app = require('./express/app.js')
+global.config = require('./config/environment')
+global.project = 'campster'
 
 const logger = function (label, data) {
   const namespace = `campster:${label}`
@@ -27,8 +29,6 @@ const exceptionHandler = (error) => {
   global.logger('Uncaught Exception: ', error.stack)
 }
 
-global.config = require('./config/environment')
-global.project = 'campster'
 global.logger = logger
 app.start()
 process.on('SIGTERM', appOut)

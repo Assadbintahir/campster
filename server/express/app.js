@@ -10,7 +10,7 @@ const passport = require('passport')
 const http = require('http')
 const routes = require('./routes')
 const errorHandler = require('./middleware/errorhandler')
-const db = require('./../../mongodb')
+const db = {}
 
 let server
 
