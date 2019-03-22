@@ -1,33 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Routes from "./Routes";
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      successMessage: ''
+      successMessage: ""
     };
-    this.apiReq()
+    this.apiReq();
   }
   apiReq() {
-    fetch('/api/v1/test')
+    fetch("/api/v1/test")
       .then(response => response.json())
       .then(state => {
-        this.setState({successMessage: state.message})
-      })
+        this.setState({ successMessage: state.message });
+      });
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <b>{this.state.successMessage}</b>
-        </header>
-      </div>
+        <div className="App">
+          <header className="App-header">
+            <p>Message from API server.</p>
+            <b>{this.state.successMessage}</b>
+          </header>
+          <div>
+            <Routes />
+          </div>
+        </div>
     );
   }
 }
