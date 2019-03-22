@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import {Route, Switch, Link } from "react-router-dom";
 
 const Home = () => <div>Home</div>;
 
@@ -34,7 +34,7 @@ const MainMenu = () => {
   };
 
 const Routes = () => (
-	<Router>
+		<>
 		<MainMenu />
 		<Switch>
 			<Route exact path="/" component={Home} />
@@ -43,7 +43,8 @@ const Routes = () => (
 			<Route exact path="/contact" component={Contact} />
 			<Route exact path="/info" component={info} />
 		</Switch>
-	</Router>
+		</>
+
 );
 
 export default Routes;
