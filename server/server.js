@@ -9,6 +9,7 @@ const logger = function (label, data) {
 
   if (global.config.env === 'dev' || global.config.env === 'test') {
     debug(data)
+  } else {
     // Send logs to some logging server
   }
 }
