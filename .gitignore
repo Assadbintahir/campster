@@ -58,9 +58,5 @@ typings/
 # dotenv environment variables file
 .env
 
-# ides
-.idea/
-.vscode/
-
 # .DS_Store file often screated by Mac OS
 .DS_Store

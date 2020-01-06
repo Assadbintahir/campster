@@ -8,6 +8,6 @@ export const setupRoutes = (app, router) => {
   router.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
   });
-  
-  app.use(router)
-}
+
+  app.use(router);
+};
