@@ -1,6 +1,6 @@
 // Production specific configuration
 // ==================================
-module.exports = {
+export default {
   // MongoDB connection options
   mongo: {
     uri: process.env.MONGO_URI || 'mongodb://localhost/campster-prod',

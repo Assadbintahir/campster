@@ -1,6 +1,8 @@
 'use strict'
-const app = require('./express/app.js')
-global.config = require('./config/environment')
+import { startApp, stopApp } from './express/app';
+import config from './config/environment';
+
+global.config = config;
 global.project = 'campster'
 
 const logger = function (label, data) {
@@ -17,7 +19,7 @@ const logger = function (label, data) {
 // app close func
 const appOut = () => {
   global.logger('Process-Exit: ', 'going to terminate the process')
-  app.stop(() => {
+  stopApp(() => {
     process.exit()
   })
   setTimeout(function () {
@@ -31,7 +33,7 @@ const exceptionHandler = (error) => {
 }
 
 global.logger = logger
-app.start()
+startApp()
 process.on('SIGTERM', appOut)
 process.on('SIGINT', appOut)
 process.on('uncaughtException', exceptionHandler)

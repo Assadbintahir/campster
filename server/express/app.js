@@ -1,23 +1,23 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const morgan = require('morgan')
-const compression = require('compression')
-const bodyParser = require('body-parser')
-const methodOverride = require('method-override')
-const cookieParser = require('cookie-parser')
-const helmet = require('helmet')
-const passport = require('passport')
-const http = require('http')
-const path = require('path')
-const routes = require('./routes')
-const errorHandler = require('./middleware/errorhandler')
+import express from 'express';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import compression from 'compression';
+import methodOverride from 'method-override';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import passport from 'passport';
+import http from 'http';
+import path from 'path';
+import { setupRoutes } from './routes';
+import errorHandler from './middleware/errorhandler';
 const db = {}
 
 let server
 
 const TAG = '/server/express/app.js'
 
-module.exports.start = () => {
+export const startApp = () => {
   const app = express()
   mongoose.connect(global.config.mongo.uri, global.config.mongo.options)
   global.db = db
@@ -30,7 +30,7 @@ module.exports.start = () => {
   app.use(methodOverride())
   app.use(cookieParser())
   app.use(passport.initialize())
-  routes.setup(app, express.Router())
+  setupRoutes(app, express.Router())
   app.use(errorHandler())
 
   if (global.config.env === 'dev' || global.config.env === 'test') {
@@ -49,7 +49,7 @@ module.exports.start = () => {
   }
 }
 
-module.exports.stop = (callback) => {
+export const stopApp = (callback) => {
   server.close(() => {
     callback()
   })

@@ -1,11 +1,10 @@
-const lib = require('./../../../lib/index')
+import lib from '../../../lib'
 
-module.exports.helloWorld = (req, res, next) => {
-  lib.test.indexTest('Asad')
-    .then(result => {
-      res.status(200).json(result)
-    })
-    .catch((err) => {
-      next(err)
-    })
+export const helloWorld = async (req, res, next) => {
+  try {
+    const result = await lib.test.indexTest('Asad');
+    res.status(200).json(result)
+  } catch (err) {
+    next(err)
+  }
 }

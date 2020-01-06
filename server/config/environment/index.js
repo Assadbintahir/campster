@@ -1,5 +1,7 @@
-const path = require('path')
-const _merge = require('lodash/merge')
+import path from 'path';
+import merge from 'lodash/merge';
+import dev from './dev';
+import prod from './prod';
 
 const all = {
   env: process.env.NODE_ENV || 'dev',
@@ -12,15 +14,10 @@ const all = {
   port: process.env.PORT || 3000,
   ip: process.env.IP || undefined,
   domain: `${process.env.DOMAIN || 'https://campster.kibopush.com'}`,
-  // Mongo Options
-  mongo: {
-    options: {
-      db: {
-        safe: true
-      }
-    }
-  }
 }
-module.exports = _merge(
-  all,
-  require(`./${process.env.NODE_ENV}.js`) || {})
+
+const envSpecificConfig = () => {
+  return process.env.NODE_ENV === 'dev' ? dev : prod;
+}
+
+export default merge(all, envSpecificConfig())
